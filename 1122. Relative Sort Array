@@ -1,0 +1,33 @@
+class Solution {
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+        HashMap<Integer,Integer> containMap=new HashMap();
+        HashMap<Integer,Integer> frequencyMap=new HashMap();
+        int[] answerArr= new int[arr1.length];
+        for(int i=0;i<arr2.length;i++){
+            containMap.put(arr2[i],i);
+        }
+        int j=1;
+        for(int i=arr1.length-1;i>=0;i--){
+            if(containMap.containsKey(arr1[i])){
+                frequencyMap.put(arr1[i],frequencyMap.getOrDefault(arr1[i],0)+1);
+            }
+            else{
+                answerArr[answerArr.length-j]=arr1[i];
+                j++;
+            }
+        }
+        j=0;
+        Arrays.sort(answerArr);
+        for(int i=0;i<arr2.length;i++){
+            if(frequencyMap.get(arr2[i])!=0){
+                answerArr[j]=arr2[i];
+                frequencyMap.put(arr2[i],frequencyMap.get(arr2[i])-1);
+                j++;
+                i--;
+            }
+        }
+        //j+1 is our value to start adding sorted end array
+        
+        return answerArr;
+    }
+}
