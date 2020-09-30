@@ -1,0 +1,23 @@
+class Solution(object):
+    def createMap(self,string):
+        stringdict={}
+        for i in range(0,len(string)):
+            if string[i] in stringdict:
+                stringdict[string[i]].append(i)
+            else:
+                stringdict[string[i]]=[i]
+        #print(Sdict)
+        return stringdict
+        
+    def isIsomorphic(self, s, t):
+        #Sdict={}
+        #Tdict={}
+        Sdict=self.createMap(s)
+        Tdict=self.createMap(t)
+        return sorted(Sdict.values()) == sorted(Tdict.values())
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        
