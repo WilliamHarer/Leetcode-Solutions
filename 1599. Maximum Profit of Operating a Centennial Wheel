@@ -1,0 +1,46 @@
+class Solution(object):
+    def minOperationsMaxProfit(self, customers, boardingCost, runningCost):
+        if 4*boardingCost<=runningCost:
+            return -1
+        i=0
+        turn=0
+        customerCount=0
+        turnMap=[]
+        while i < len(customers):
+            if customers[i]>=4:
+                turn+=1
+                turnMap.append(4*boardingCost-runningCost)
+                customers[i]=customers[i]-4
+                if i+1<len(customers):
+                    i=i+1
+                    customers[i]+=customers[i-1]
+            elif customers[i]<4:
+                turn+=1
+                turnMap.append(customers[i]*boardingCost-runningCost)
+                customers[i]=0
+                i+=1
+            # if customers[i]==0:
+            #     i+=1
+        #print(turnMap)
+        for i in range(1,len(turnMap)):
+            turnMap[i]+=turnMap[i-1]
+        #print(turnMap)
+        maxProfit=0
+        minTurn=-1
+        for i in range(len(turnMap)):
+            if turnMap[i]>maxProfit:
+                maxProfit=turnMap[i]
+                minTurn=i
+        #print(minTurn+1)
+        if minTurn>=0:
+            return minTurn+1
+        else:
+            return minTurn
+            
+            
+        """
+        :type customers: List[int]
+        :type boardingCost: int
+        :type runningCost: int
+        :rtype: int
+        """
