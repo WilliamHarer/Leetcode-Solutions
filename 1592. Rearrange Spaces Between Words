@@ -1,0 +1,53 @@
+class Solution(object):
+    def reorderSpaces(self, text):
+        spaceCount=0
+        wordCount=0
+        spaces=0
+        remainingSpaces=0
+        wordList=[]
+        returnString=""
+        #print("spaces"+" "*4+"end")
+        for i in range(0,len(text)):
+            if text[i]==" ":
+                spaceCount=spaceCount+1
+        if spaceCount == 0:
+            return text
+        i=0
+        j=0
+        while i < len(text):
+            if text[i] !=" ":
+                j=i
+                while j < len(text):
+                    if text[j] == " " or j==len(text)-1:
+                        #append substring to list from i->j-1
+                        if j==len(text)-1 and text[j]!= " ":
+                            wordList.append(text[i:j+1])
+                        else:
+                            wordList.append(text[i:j])
+                        wordCount=wordCount+1
+                        i=j
+                        break
+                    j=j+1
+            i=i+1
+        if wordCount >1:
+            spaces=spaceCount/(wordCount-1)
+            remainingSpaces=spaceCount%(wordCount-1)
+        else:
+            spaces=0
+            remainingSpaces=spaceCount
+        #print(spaces)
+        #print(remainingSpaces)
+        for i in range(0,len(wordList)):
+            if i==len(wordList)-1:
+                if remainingSpaces>0:
+                    returnString=returnString+wordList[i]+" "*remainingSpaces
+                else:
+                    returnString=returnString+wordList[i]
+            else:
+                returnString=returnString+wordList[i]+" "*spaces
+        return returnString
+        """
+        :type text: str
+        :rtype: str
+        """
+        
