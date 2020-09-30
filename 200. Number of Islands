@@ -1,0 +1,42 @@
+class Solution(object):
+    def generateNeighbors(self,coords):
+        neighbors=[]
+        neighbors.append([coords[0]-1,coords[1]])
+        neighbors.append([coords[0]+1,coords[1]])
+        neighbors.append([coords[0],coords[1]-1])
+        neighbors.append([coords[0],coords[1]+1])
+        return neighbors
+    def dfs(self,grid,coords):
+        neighbors=self.generateNeighbors([coords[0],coords[1]])
+        if coords[0]>0:
+            if grid[neighbors[0][0]][neighbors[0][1]] =="1":
+                grid[neighbors[0][0]][neighbors[0][1]] ="0"
+                self.dfs(grid,[neighbors[0][0],neighbors[0][1]])
+        if coords[0]<len(grid)-1:
+            if grid[neighbors[1][0]][neighbors[1][1]] =="1":
+                grid[neighbors[1][0]][neighbors[1][1]] = "0"
+                self.dfs(grid,[neighbors[1][0],neighbors[1][1]])
+        if coords[1]>0:
+            if grid[neighbors[2][0]][neighbors[2][1]] =="1":
+                grid[neighbors[2][0]][neighbors[2][1]] ="0"
+                self.dfs(grid,[neighbors[2][0],neighbors[2][1]])
+        if coords[1]<len(grid[0])-1:
+            if grid[neighbors[3][0]][neighbors[3][1]] == "1":
+                grid[neighbors[3][0]][neighbors[3][1]] = "0"
+                self.dfs(grid,[neighbors[3][0],neighbors[3][1]])
+                
+    def numIslands(self, grid):
+        #start=[0,0]
+        islands=0
+        for i in range(0,len(grid)):
+            for j in range(0,len(grid[0])):
+                if grid[i][j]=="1":
+                    #DFS now
+                    islands=islands+1
+                    self.dfs(grid,[i,j])
+        return islands
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        
