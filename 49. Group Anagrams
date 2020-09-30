@@ -1,0 +1,17 @@
+class Solution(object):
+    def groupAnagrams(self, strs):
+        anagrams={}
+        for i in range(0,len(strs)):
+            if str(sorted(strs[i])) in anagrams:
+                anagrams[str(sorted(strs[i]))].append(strs[i])
+            else:
+                anagrams[str(sorted(strs[i]))]=[strs[i]]
+        returnlist=[]
+        for key in anagrams:
+            returnlist.append(anagrams[key])
+        return returnlist
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        
