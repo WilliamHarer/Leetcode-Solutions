@@ -1,0 +1,18 @@
+class Solution(object):
+    def replaceElements(self, arr):
+        maxVal=arr[len(arr)-1]
+        arr[len(arr)-1]=-1
+        temp=0
+        for i in range(len(arr)-2,-1,-1):
+            if arr[i]>maxVal:
+                temp=arr[i]
+                arr[i]=maxVal
+                maxVal=temp
+            else:
+                arr[i]=maxVal
+        return arr
+        """
+        :type arr: List[int]
+        :rtype: List[int]
+        """
+        
