@@ -1,0 +1,20 @@
+class Solution(object):
+    def minOperations(self, logs):
+        step=0
+        for i in range(len(logs)):
+            if logs[i] == "./":
+                #dont change step
+                step=step
+            elif logs[i] =="../":
+                if step==0:
+                    step=0
+                else:
+                    step-=1
+            else:
+                step+=1
+        return step
+        """
+        :type logs: List[str]
+        :rtype: int
+        """
+        
