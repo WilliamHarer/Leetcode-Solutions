@@ -1,0 +1,16 @@
+class Solution(object):
+    def kidsWithCandies(self, candies, extraCandies):
+        GreatestCheck=[]
+        Greatest=candies[0]
+        for i in range(1,len(candies)):
+            if(candies[i]>Greatest):
+                Greatest=candies[i]
+        for i in range(0,len(candies)):
+            GreatestCheck.append((candies[i]+extraCandies)>=Greatest)
+        return GreatestCheck
+        """
+        :type candies: List[int]
+        :type extraCandies: int
+        :rtype: List[bool]
+        """
+        
