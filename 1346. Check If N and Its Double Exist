@@ -1,0 +1,27 @@
+class Solution(object):
+    def checkIfExist(self, arr):
+        table=set()
+        for i in range(0,len(arr)):
+            if arr[i] == 0:
+                if arr[i] not in table:
+                    table.add(arr[i])
+                else:
+                    return True
+                continue
+            if arr[i] not in table:
+                table.add(arr[i])
+            if arr[i]*2 in table:
+                #print(arr[i])
+                #print(arr[i]*2)
+                return True
+            if arr[i]%2 ==0 and arr[i]/2 in table:
+                #print(arr[i])
+                #print(arr[i]%2)
+                #print(arr[i]/2)
+                return True
+        return False
+        """
+        :type arr: List[int]
+        :rtype: bool
+        """
+        
